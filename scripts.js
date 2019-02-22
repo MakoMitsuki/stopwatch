@@ -5,8 +5,7 @@ var h1 = document.getElementsByTagName('h1')[0],
     seconds = 0, minutes = 0, hours = 0,
     t;
 
-
-function add(){
+function getNow(){
     seconds++;
     if (seconds >= 60) {
         seconds = 0;
@@ -16,9 +15,12 @@ function add(){
             hours++;
         }
     }
-    
-    $("#stopwatch").html((hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds));
 
+    return (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+}
+
+function add(){
+    $("#stopwatch").html(getNow());
     timer();
 }
 
@@ -27,15 +29,24 @@ function timer() {
 }
 
 $(document).ready(function(){
+    $("#lap").prop('disabled', true);
+    $("#stop").prop('disabled', true);
+
     /* Start button */
     $("#start").on('click', function(){
+        $("#lap").prop('disabled', false);
         console.log("Timer start");
         timer();
+        $("#start").prop('disabled', true);
+        $("#stop").prop('disabled', false);
     });
 
     // Stop button 
     $("#stop").on('click', function() {
         clearTimeout(t);
+        $("#lap").prop('disabled', true);
+        $("#start").prop('disabled', false);
+        $("#stop").prop('disabled', true);
     });
 
     // Clear button 
@@ -45,6 +56,16 @@ $(document).ready(function(){
         minutes = 0;
         hours = 0;
     });
+
+
+    // lap functions
+    $("#lap").on('click', function(){
+        $("#laplist").append("<li>"+getNow()+"</li>");
+    });
+
+    $("#clearlaps").on('click', function(){
+        $("#laplist").empty();
+    })
 });
 
 
