@@ -6,15 +6,15 @@ var h1 = document.getElementsByTagName('h1')[0],
     t;
 
 function saveList() {
-  localStorage.setItem('lap',$("#laplist").html);
+  sessionStorage.setItem('lap',$("#laplist").html);
 }
 
 function clearList() {
-  localStorage.clear();
+  sessionStorage.clear();
 }
 
 function retrieveList() {
-	if (window.localStorage) {
+	if (window.sessionStorage) {
     	$("#laplist").append(sessionStorage.getItem('lap'));
 	} else {
   		console.log('No session storage support');
