@@ -81,7 +81,7 @@ $(document).ready(function(){
 		saveList();
     });
 
-    $("#clearlaps").on('click', function(){
+    $("#clearlap").on('click', function(){
         $("#laplist").empty();
 		clearList();
     })
