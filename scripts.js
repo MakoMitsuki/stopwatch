@@ -93,7 +93,7 @@ $(document).ready(function(){
         $('#laplist_container ol:first-child').empty();
     });
 	
-	$("#clearlap").on('click', function(){
+	$("#clearalllap").on('click', function(){
         $('#laplist_container').empty();
 		clearList();
     });
