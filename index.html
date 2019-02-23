@@ -1,13 +1,29 @@
+<!doctype html>
+<html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="./scripts.js"></script>
+<meta charset="utf-8">
+<title>Stopwatch</title>
+<style type="text/css">
+@import url("stopwatch.css");
+</style>
 </head>
 
-<h1 id="stopwatch">00:00:00</h1>
-<button id="start">Start</button>
-<button id="stop">Stop</button>
-<button id="reset">Reset</button>
-<button id="lap">Lap</button>
-<button id="clearlaps">Clear Laps</button>
-
-<ol id="laplist"></ol>
+<body>
+	<div id="stopwatch">00:00:00</div>
+	<div>
+		<button id="start">Start</button>
+		<button id="stop">Stop</button>
+		<button id="reset">Reset</button>
+		<button id="lap">Lap</button>
+		
+	</div>
+	<div>
+	<button id="clearlap">Clear Laps</button>
+	<ol id="laplist">
+		<li>00:59:59</l1>
+	</ol>
+	</div>
+</body>
+</html>
