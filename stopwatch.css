@@ -22,7 +22,7 @@ button{
 }
 
 button:disabled{
-	background-color:dimgrey;
+	background-color:#D0D0D0 !important;
 }
 
 #stopwatch{
