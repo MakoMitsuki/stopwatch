@@ -7,23 +7,21 @@ var h1 = document.getElementsByTagName('h1')[0],
 
 // some html storage functions
 function saveList() {
-  sessionStorage.setItem('lap',$("#laplist").html());
-}
-
-function saveTime() {
-	sessionStorage.setItem('lastTime', $("#stopwatch").html())
+  sessionStorage.setItem('lap',$("#laplist_container").html());
 }
 
 function clearList(flag, content) {
-	// clears time or laplist based on flag
-	sessionStorage.setItem(flag, content);
+	sessionStorage.clear();
 }
 
 function retrieveList() {
+	$("#laplist_container").append("<ol id='laplist'></ol>");
 	if (window.sessionStorage) {
-    	$("#laplist").append(sessionStorage.getItem('lap'));
-		if (sessionStorage.getItem('lastTime') != "")
-			document.getElementById("stopwatch").innerHTML = sessionStorage.getItem('lastTime');
+		if (sessionStorage.getItem('lap') != "")
+			{
+				$("#laplist_container").append("<hr />");
+    			$("#laplist_container").append(sessionStorage.getItem('lap'));
+			}
 	} else {
   		console.log('No session storage support');
 	}
@@ -51,7 +49,6 @@ function add(){
 
 function timer() {
     t = setTimeout(add, 1000);
-	saveTime();
 }
 
 $(document).ready(function(){
@@ -82,19 +79,19 @@ $(document).ready(function(){
         seconds = 0;
         minutes = 0;
         hours = 0;
-		clearList('lastTime', "00:00:00");
     });
 
 
     // lap functions
     $("#lap").on('click', function(){
-        $("#laplist").append("<li>"+getNow()+"</li>");
+		$('#laplist_container ol:first-child').append("<li>"+getNow()+"</li>");
+        //$("#laplist").append("<li>"+getNow()+"</li>");
 		saveList();
     });
 
     $("#clearlap").on('click', function(){
         $("#laplist").empty();
-		clearList('lap', "");
+		clearList();
     })
 });
 

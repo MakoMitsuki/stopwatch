@@ -50,7 +50,7 @@ button:disabled{
 	background-color: #341E35;
 }
 
-#laplist{
+#laplist_container{
 	font-size: 18px;
 	font-weight: bold;
 }
