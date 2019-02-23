@@ -2,7 +2,7 @@
 /* CSS Document */
 
 body{
-	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-family: Arial;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -10,7 +10,6 @@ body{
 }
 
 button{
-	font-family: Arial;
 	font-size: 18px;
 	border: none;
 	color: white;
@@ -28,6 +27,7 @@ button:disabled{
 #stopwatch{
 	font-size: 100px;
 	font-weight: bold;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 }
 
 #start{
@@ -48,4 +48,9 @@ button:disabled{
 
 #clearlap{
 	background-color: #341E35;
+}
+
+#laplist{
+	font-size: 18px;
+	font-weight: bold;
 }

@@ -5,6 +5,16 @@ var h1 = document.getElementsByTagName('h1')[0],
     seconds = 0, minutes = 0, hours = 0,
     t;
 
+function storage()
+{
+	if (typeof(Storage) !== "undefined") {
+		localStorage.setItem("laps", $("#laplist").html());
+		document.getElementById("laplist").innerHTML = localStorage.getItem("laps");
+	} else {
+		document.getElementById("laplist").innerHTML = "Sorry, your browser does not support Web Storage...";
+	}
+}
+
 function getNow(){
     seconds++;
     if (seconds >= 60) {
@@ -29,6 +39,7 @@ function timer() {
 }
 
 $(document).ready(function(){
+	storage();
     $("#lap").prop('disabled', true);
     $("#stop").prop('disabled', true);
 
