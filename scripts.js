@@ -22,7 +22,8 @@ function clearList(flag, content) {
 function retrieveList() {
 	if (window.sessionStorage) {
     	$("#laplist").append(sessionStorage.getItem('lap'));
-		document.getElementById("stopwatch").innerHTML = sessionStorage.getItem('lastTime');
+		if (sessionStorage.getItem('lastTime') != "")
+			document.getElementById("stopwatch").innerHTML = sessionStorage.getItem('lastTime');
 	} else {
   		console.log('No session storage support');
 	}
