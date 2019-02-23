@@ -46,8 +46,14 @@ button:disabled{
 	background-color:#284B87;
 }
 
-#clearlap{
+.clearlap{
 	background-color: #341E35;
+}
+
+.subtext{
+	font-size: 10px;
+	text-align: center;
+	color: red;
 }
 
 #laplist_container{
