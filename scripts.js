@@ -44,7 +44,7 @@ function getNow(){
 	}
     
 
-    return (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds ? (seconds > 9 ? seconds : "0" + seconds) : "00") + ":" + (ms ? (ms > 9 ? (ms > 9 ? ms : "0" + ms) : "00") : "000") ;
+    return (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds ? (seconds > 9 ? seconds : "0" + seconds) : "00") + ":" + (ms ? (ms > 9 ? (ms > 99 ? ms : "0" + ms) : "00") : "000") ;
 }
 
 function add(){
@@ -99,7 +99,7 @@ $(document).ready(function(){
 
     $("#clearlap").on('click', function(){
 		// removes only current list
-        $('#laplist_container #laplist:first-child').empty();
+        $('#laplist_container:first-child').empty();
 		saveList();
     });
 	
