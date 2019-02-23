@@ -5,13 +5,19 @@ var h1 = document.getElementsByTagName('h1')[0],
     seconds = 0, minutes = 0, hours = 0,
     t;
 
-function storage()
-{
-	if (typeof(Storage) !== "undefined") {
-		localStorage.setItem("laps", $("#laplist").html());
-		document.getElementById("laplist").innerHTML = localStorage.getItem("laps");
+function saveList() {
+  localStorage.setItem('lap',$("#laplist").html);
+}
+
+function clearList() {
+  localStorage.clear();
+}
+
+function retrieveList() {
+	if (window.localStorage) {
+    	$("#laplist").append(sessionStorage.getItem('lap'));
 	} else {
-		document.getElementById("laplist").innerHTML = "Sorry, your browser does not support Web Storage...";
+  		console.log('No session storage support');
 	}
 }
 
@@ -39,7 +45,7 @@ function timer() {
 }
 
 $(document).ready(function(){
-	storage();
+	retrieveList();
     $("#lap").prop('disabled', true);
     $("#stop").prop('disabled', true);
 
@@ -72,10 +78,12 @@ $(document).ready(function(){
     // lap functions
     $("#lap").on('click', function(){
         $("#laplist").append("<li>"+getNow()+"</li>");
+		saveList();
     });
 
     $("#clearlaps").on('click', function(){
         $("#laplist").empty();
+		clearList();
     })
 });
 
