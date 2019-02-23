@@ -99,7 +99,7 @@ $(document).ready(function(){
 
     $("#clearlap").on('click', function(){
 		// removes only current list
-        $('#laplist_container:first-child').empty();
+        $('#laplist_container ol:first-child').empty();
 		saveList();
     });
 	
