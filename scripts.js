@@ -5,22 +5,30 @@ var h1 = document.getElementsByTagName('h1')[0],
     seconds = 0, minutes = 0, hours = 0,
     t;
 
+// some html storage functions
 function saveList() {
   sessionStorage.setItem('lap',$("#laplist").html());
 }
 
-function clearList() {
-  sessionStorage.clear();
+function saveTime() {
+	sessionStorage.setItem('lastTime', $("#stopwatch").html())
+}
+
+function clearList(flag, content) {
+	// clears time or laplist based on flag
+	sessionStorage.setItem(flag, content);
 }
 
 function retrieveList() {
 	if (window.sessionStorage) {
     	$("#laplist").append(sessionStorage.getItem('lap'));
+		document.getElementById("stopwatch").innerHTML = sessionStorage.getItem('lastTime');
 	} else {
   		console.log('No session storage support');
 	}
 }
 
+// timer functions
 function getNow(){
     seconds++;
     if (seconds >= 60) {
@@ -42,6 +50,7 @@ function add(){
 
 function timer() {
     t = setTimeout(add, 1000);
+	saveTime();
 }
 
 $(document).ready(function(){
@@ -72,6 +81,7 @@ $(document).ready(function(){
         seconds = 0;
         minutes = 0;
         hours = 0;
+		clearList('lastTime', "00:00:00");
     });
 
 
@@ -83,7 +93,7 @@ $(document).ready(function(){
 
     $("#clearlap").on('click', function(){
         $("#laplist").empty();
-		clearList();
+		clearList('lap', "");
     })
 });
 
