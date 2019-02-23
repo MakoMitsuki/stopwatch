@@ -2,7 +2,7 @@ var h1 = document.getElementsByTagName('h1')[0],
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
     clear = document.getElementById('clear'),
-    seconds = 0, minutes = 0, hours = 0,
+    ms = 0, seconds = 0, minutes = 0, hours = 0,
     t;
 
 // some html storage functions
@@ -15,7 +15,7 @@ function clearList(flag, content) {
 }
 
 function retrieveList() {
-	$("#laplist_container").append("<ol id='laplist'></ol>");
+	$("#laplist_container").append("<ol class='laplist'></ol>");
 	if (window.sessionStorage) {
 		if (sessionStorage.getItem('lap') != "")
 			{
@@ -29,7 +29,10 @@ function retrieveList() {
 
 // timer functions
 function getNow(){
-    seconds++;
+	ms++
+	if (ms >= 1000){
+		ms = 0;
+		seconds++;
     if (seconds >= 60) {
         seconds = 0;
         minutes++;
@@ -38,8 +41,10 @@ function getNow(){
             hours++;
         }
     }
+	}
+    
 
-    return (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    return (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds ? (seconds > 9 ? seconds : "0" + seconds) : "00") + ":" + (ms > 9 ? ms : "0" + ms) ;
 }
 
 function add(){
@@ -48,7 +53,7 @@ function add(){
 }
 
 function timer() {
-    t = setTimeout(add, 1000);
+    t = setTimeout(add, 1);
 }
 
 $(document).ready(function(){
@@ -79,6 +84,9 @@ $(document).ready(function(){
         seconds = 0;
         minutes = 0;
         hours = 0;
+		// ensures retention of old data
+		
+		saveList();
     });
 
 
@@ -90,11 +98,14 @@ $(document).ready(function(){
     });
 
     $("#clearlap").on('click', function(){
-        $('#laplist_container ol:first-child').empty();
+		// removes only current list
+        $("#laplist_container").find(".laplist :first").empty();
+		saveList();
     });
 	
 	$("#clearalllap").on('click', function(){
         $('#laplist_container').empty();
+		$('#laplist_container').append("<ol class='laplist'></ol>");
 		clearList();
     });
 	
