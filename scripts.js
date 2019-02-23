@@ -29,7 +29,7 @@ function retrieveList() {
 
 // timer functions
 function getNow(){
-	ms += 15;
+	ms += 16;
 	if (ms >= 1000){
 		ms = 0;
 		seconds++;
@@ -53,7 +53,7 @@ function add(){
 }
 
 function timer() {
-    t = setTimeout(add, 15);
+    t = setTimeout(add, 16);
 }
 
 $(document).ready(function(){
