@@ -21,6 +21,10 @@ button{
 	margin: 3px;
 }
 
+button:disabled{
+	background-color:dimgrey;
+}
+
 #stopwatch{
 	font-size: 100px;
 	font-weight: bold;
@@ -32,6 +36,16 @@ button{
 
 #stop{
 	background-color: darkred;
-	border: none;
-	color: white;
+}
+
+#reset{
+	background-color: #C08837;
+}
+
+#lap{
+	background-color:#284B87;
+}
+
+#clearlap{
+	background-color: #341E35;
 }
