@@ -6,7 +6,7 @@ var h1 = document.getElementsByTagName('h1')[0],
     t;
 
 function saveList() {
-  sessionStorage.setItem('lap',$("#laplist").html);
+  sessionStorage.setItem('lap',$("#laplist").html());
 }
 
 function clearList() {
